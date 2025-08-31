@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public final class ConectionConfig {
     private ConectionConfig() {}
 
-    public static Connection getConection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         var conection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/dio",
                 "root",

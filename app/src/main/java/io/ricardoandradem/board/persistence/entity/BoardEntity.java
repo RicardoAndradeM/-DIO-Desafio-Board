@@ -1,9 +1,12 @@
 package io.ricardoandradem.board.persistence.entity;
 
+import java.util.ArrayList;
+
 public class BoardEntity {
 
     private Long id;
     private String name;
+    private ArrayList<BoardColumnEntity> boardColumnList = new ArrayList<>();
 
     public BoardEntity() {
     }
@@ -27,6 +30,14 @@ public class BoardEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ArrayList<BoardColumnEntity> getBoardColumnList() {
+        return boardColumnList;
+    }
+
+    public void setBoardColumnList(ArrayList<BoardColumnEntity> boardColumnList) {
+        this.boardColumnList = boardColumnList;
     }
 
     @Override

@@ -5,17 +5,21 @@ import io.ricardoandradem.board.persistence.entity.BoardEntity;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class BoardService {
 
     private final Connection connection;
+    private final BoardDAO boardDAO;
+    private final BoardColumnService boardColumnService;
 
     public BoardService(Connection connection) {
         this.connection = connection;
+        this.boardDAO = new BoardDAO(connection);
+        this.boardColumnService = new BoardColumnService(connection);
     }
 
     public void delete(Long id) throws SQLException {
-        var boardDAO = new BoardDAO(connection);
         try {
             boardDAO.delete(id);
             connection.commit();
@@ -25,16 +29,25 @@ public class BoardService {
         }
     }
 
-    public BoardEntity insert(BoardEntity entity) throws SQLException {
-        var boardDAO = new BoardDAO(connection);
+    public BoardEntity insert(BoardEntity board) throws SQLException {
         BoardEntity result;
         try {
-            result = boardDAO.insert(entity);
+            result = boardDAO.insert(board);
+            for (var boardColumn : result.getBoardColumnList()) {
+                boardColumn.setBoard(board);
+                boardColumnService.insert(boardColumn);
+            }
             connection.commit();
         } catch (SQLException e) {
             connection.rollback();
             throw e;
         }
+        return result;
+    }
+
+    public Optional<BoardEntity> findById(Long id) throws SQLException {
+        var result = boardDAO.findById(id);
+        result.ifPresent(board -> board.setBoardColumnList(boardColumnService.findByBoardId(board.getId())));
         return result;
     }
 }

@@ -5,12 +5,13 @@ public class BoardColumnEntity {
     private long id;
     private String Name;
     private int orgerColmun;
-    private BorderColumnKind kind;
+    private BoardColumnKind kind;
+    private BoardEntity board = new BoardEntity();
 
     public BoardColumnEntity() {
     }
 
-    public BoardColumnEntity(long id, String name, int orgerColmun, BorderColumnKind kind) {
+    public BoardColumnEntity(long id, String name, int orgerColmun, BoardColumnKind kind) {
         this.id = id;
         Name = name;
         this.orgerColmun = orgerColmun;
@@ -41,12 +42,20 @@ public class BoardColumnEntity {
         this.orgerColmun = orgerColmun;
     }
 
-    public BorderColumnKind getKind() {
+    public BoardColumnKind getKind() {
         return kind;
     }
 
-    public void setKind(BorderColumnKind kind) {
+    public void setKind(BoardColumnKind kind) {
         this.kind = kind;
+    }
+
+    public BoardEntity getBoard() {
+        return board;
+    }
+
+    public void setBoard(BoardEntity board) {
+        this.board = board;
     }
 
     @Override
