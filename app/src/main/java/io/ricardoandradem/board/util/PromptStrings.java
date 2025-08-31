@@ -8,5 +8,14 @@ public class PromptStrings {
             3 - Excluir Board
             4 - Sair
             """;
+
+    public static String boardMenu = """
+            1 - Criar Card
+            2 - Mover Card
+            3 - Bloquear/Desbloquear Card
+            4 - Cancelar Card
+            5 - Sair
+            """;
+
     public static String opcaoInvalida = "Opção invalida!";
 }

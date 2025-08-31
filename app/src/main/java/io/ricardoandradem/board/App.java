@@ -1,5 +1,6 @@
 package io.ricardoandradem.board;
 
+import io.ricardoandradem.board.ui.Menu;
 import org.flywaydb.core.Flyway;
 
 public class App {
@@ -12,5 +13,7 @@ public class App {
         flyway.migrate();
 
         System.out.println("Migrações aplicadas com sucesso!");
+
+        new Menu().run();
     }
 }

@@ -21,7 +21,7 @@ public class BoardColumnDAO {
     public BoardColumnEntity insert(BoardColumnEntity boardColumn) throws SQLException {
         try (
             var statement = connection.prepareStatement(
-                    "INSERT INTO BOARDS (nome, order_column, kind, board_id) " +
+                    "INSERT INTO BOARD_COLUMNS (name, order_column, kind, board_id) " +
                             "VALUES (?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS
             )

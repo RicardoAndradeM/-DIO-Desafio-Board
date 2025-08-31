@@ -47,7 +47,13 @@ public class BoardService {
 
     public Optional<BoardEntity> findById(Long id) throws SQLException {
         var result = boardDAO.findById(id);
-        result.ifPresent(board -> board.setBoardColumnList(boardColumnService.findByBoardId(board.getId())));
+        result.ifPresent(board -> {
+            try {
+                board.setBoardColumnList(boardColumnService.findByBoardId(board.getId()));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
         return result;
     }
 }

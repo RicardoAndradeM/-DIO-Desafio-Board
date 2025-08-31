@@ -1,11 +1,14 @@
 package io.ricardoandradem.board.persistence.entity;
 
+import java.util.ArrayList;
+
 public class BoardColumnEntity {
 
     private long id;
     private String Name;
     private int orgerColmun;
     private BoardColumnKind kind;
+    private ArrayList<CardEntity> cardList = new ArrayList<>();
     private BoardEntity board = new BoardEntity();
 
     public BoardColumnEntity() {
@@ -58,6 +61,14 @@ public class BoardColumnEntity {
         this.board = board;
     }
 
+    public ArrayList<CardEntity> getCardList() {
+        return cardList;
+    }
+
+    public void setCardList(ArrayList<CardEntity> cardList) {
+        this.cardList = cardList;
+    }
+
     @Override
     public String toString() {
         return "BoardColumnEntity{" +
@@ -66,5 +77,9 @@ public class BoardColumnEntity {
                 ", orgerColmun=" + orgerColmun +
                 ", kind=" + kind +
                 '}';
+    }
+
+    public void addCard(CardEntity card) {
+        cardList.add(card);
     }
 }

@@ -7,16 +7,18 @@ public class CardEntity {
     private String Description;
     private BlockStatus isBlocked;
     private String blockDescription;
+    private BoardColumnEntity boardColumn;
 
-    public CardEntity() {
+    public CardEntity() {;
     }
 
-    public CardEntity(Long id, String title, String description, BlockStatus isBlocked, String blockDescription) {
+    public CardEntity(Long id, String title, String description, BlockStatus isBlocked, String blockDescription, BoardColumnEntity boardColumn) {
         this.id = id;
         Title = title;
         Description = description;
         this.isBlocked = isBlocked;
         this.blockDescription = blockDescription;
+        this.boardColumn = boardColumn;
     }
 
     public Long getId() {
@@ -57,6 +59,14 @@ public class CardEntity {
 
     public void setBlockDescription(String blockDescription) {
         this.blockDescription = blockDescription;
+    }
+
+    public BoardColumnEntity getBoardColumn() {
+        return boardColumn;
+    }
+
+    public void setBoardColumn(BoardColumnEntity boardColumn) {
+        this.boardColumn = boardColumn;
     }
 
     @Override

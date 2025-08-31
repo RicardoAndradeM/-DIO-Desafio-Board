@@ -18,7 +18,7 @@ public class BoardDAO {
     public BoardEntity insert(BoardEntity board) throws SQLException {
         try(
             var statement = connection.prepareStatement(
-                    "INSERT INTO BOARDS (nome) VALUES (? )",
+                    "INSERT INTO BOARDS (name) VALUES (?)",
                     Statement.RETURN_GENERATED_KEYS
             )
         ) {
@@ -52,10 +52,11 @@ public class BoardDAO {
                 statement.setLong(1, id);
                 statement.executeQuery();
                 var resultSet = statement.getResultSet();
-                var board = new BoardEntity(
-                        resultSet.getLong("id"),
-                        resultSet.getString("name")
-                );
+                var board = new BoardEntity();
+                if(resultSet.next()){
+                    board.setId(resultSet.getLong("id"));
+                    board.setName(resultSet.getString("name"));
+                }
                 return Optional.of(board);
             }
         }
